@@ -13,14 +13,13 @@
     </header>
     
     <main>
-        <section id="exercises-section">
+        <section id="subjects-section">
             <h2>انتخاب موضوع</h2>
-            <select id="subject-select">
-                <option value="">موضوع را انتخاب کنید</option>
-                <option value="1">زبان فارسی</option>
-                <option value="2">نگارش</option>
-                <option value="3">ریاضی</option>
-            </select>
+            <div id="subjects-buttons">
+                <button class="subject-button" data-id="1">زبان فارسی</button>
+                <button class="subject-button" data-id="2">نگارش</button>
+                <button class="subject-button" data-id="3">ریاضی</button>
+            </div>
             <h2 id="lesson-title" style="display: none;">انتخاب درس</h2>
             <select id="lesson-select" style="display: none;"></select>
             <button id="load-exercise" style="display: none;">بارگذاری تمرین</button>
