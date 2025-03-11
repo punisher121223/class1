@@ -6,21 +6,23 @@ const subjects = [
 
 const lessons = [
     { id: 1, subject_id: 1, title: 'درس 1: آشنایی با کلمات' },
-    { id: 2, subject_id: 2, title: 'درس 1: نوشتن جملات ساده' },
-    { id: 3, subject_id: 3, title: 'درس 1: جمع و تفریق' },
+    { id: 2, subject_id: 1, title: 'درس 2: جملات ساده' },
+    { id: 3, subject_id: 2, title: 'درس 1: نوشتن جملات ساده' },
+    { id: 4, subject_id: 3, title: 'درس 1: جمع و تفریق' },
+    { id: 5, subject_id: 3, title: 'درس 2: اندازه‌گیری' },
 ];
 
 const exercises = [
     { id: 1, lesson_id: 1, question: 'فعل جمله “بابا می‌خورد” چیست؟', answer: 'می‌خورد', type: 'تشخیص' },
-    { id: 2, lesson_id: 2, question: 'یک جمله با کلمه “کتاب” بنویسید.', answer: 'کتاب روی میز است.', type: 'نوشتن' },
-    { id: 3, lesson_id: 3, question: '5 + 3 چیست؟', answer: '8', type: 'محاسبه' },
+    { id: 2, lesson_id: 3, question: 'یک جمله با کلمه “کتاب” بنویسید.', answer: 'کتاب روی میز است.', type: 'نوشتن' },
+    { id: 3, lesson_id: 4, question: '5 + 3 چیست؟', answer: '8', type: 'محاسبه' },
 ];
 
 document.querySelectorAll('.subject-button').forEach(button => {
     button.addEventListener('click', function() {
         const subjectId = parseInt(this.getAttribute('data-id'));
         const lessonSelect = document.getElementById('lesson-select');
-        lessonSelect.innerHTML = '<option value="">درس را انتخاب کنید</option>';
+        lessonSelect.innerHTML = '<option value="">درس را انتخاب کنید</option>'; // Clear previous options
         lessons.forEach(lesson => {
             if (lesson.subject_id === subjectId) {
                 lessonSelect.innerHTML += `<option value="${lesson.id}">${lesson.title}</option>`;
@@ -34,6 +36,7 @@ document.querySelectorAll('.subject-button').forEach(button => {
     });
 });
 
+// اضافه کردن Event listener برای بارگذاری تمرینات
 document.getElementById('load-exercise').addEventListener('click', function() {
     const lessonId = parseInt(document.getElementById('lesson-select').value);
     const exerciseContainer = document.getElementById('exercise-container');
@@ -49,6 +52,8 @@ document.getElementById('load-exercise').addEventListener('click', function() {
         }
 
         exerciseContainer.innerHTML += `<button id="submit-answer">ارسال پاسخ</button>`;
+        
+        // Add event listener for submit button inside this if block
         document.getElementById('submit-answer').addEventListener('click', function() {
             const userAnswer = document.getElementById('answer-input') ? document.getElementById('answer-input').value.trim() : '';
             if (userAnswer.toLowerCase() === exercise.answer.toLowerCase()) {
