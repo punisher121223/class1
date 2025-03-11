@@ -16,23 +16,22 @@ const exercises = [
     { id: 3, lesson_id: 3, question: '5 + 3 چیست؟', answer: '8', type: 'محاسبه' },
 ];
 
-document.getElementById('subject-select').addEventListener('change', function() {
-    const subjectId = parseInt(this.value);
-    const lessonSelect = document.getElementById('lesson-select');
-    lessonSelect.innerHTML = '<option value="">درس را انتخاب کنید</option>';
-    subjects.forEach(subject => {
-        if (subject.id === subjectId) {
-            lessons.forEach(lesson => {
-                if (lesson.subject_id === subjectId) {
-                    lessonSelect.innerHTML += `<option value="${lesson.id}">${lesson.title}</option>`;
-                }
-            });
-        }
-    });
+document.querySelectorAll('.subject-button').forEach(button => {
+    button.addEventListener('click', function() {
+        const subjectId = parseInt(this.getAttribute('data-id'));
+        const lessonSelect = document.getElementById('lesson-select');
+        lessonSelect.innerHTML = '<option value="">درس را انتخاب کنید</option>';
+        lessons.forEach(lesson => {
+            if (lesson.subject_id === subjectId) {
+                lessonSelect.innerHTML += `<option value="${lesson.id}">${lesson.title}</option>`;
+            }
+        });
 
-    document.getElementById('lesson-title').style.display = 'block';
-    lessonSelect.style.display = 'block';
-    document.getElementById('load-exercise').style.display = 'block';
+        // نمایش عنوان درس و فیلدهای مربوطه
+        document.getElementById('lesson-title').style.display = 'block';
+        lessonSelect.style.display = 'block';
+        document.getElementById('load-exercise').style.display = 'block';
+    });
 });
 
 document.getElementById('load-exercise').addEventListener('click', function() {
