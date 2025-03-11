@@ -3,33 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تمرینات هوشمند کلاس اول ابتدایی</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
+    <title>آموزش الفبا و دروس</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>تمرینات هوشمند کلاس اول ابتدایی</h1>
-    </header>
-    
-    <main>
-        <section id="subjects-section">
-            <h2>انتخاب موضوع</h2>
-            <div id="subjects-buttons">
-                <button class="subject-button" data-id="1">زبان فارسی</button>
-                <button class="subject-button" data-id="2">نگارش</button>
-                <button class="subject-button" data-id="3">ریاضی</button>
-            </div>
-            <h2 id="lesson-title" style="display: none;">انتخاب درس</h2>
-            <select id="lesson-select" style="display: none;"></select>
-            <button id="load-exercise" style="display: none;">بارگذاری تمرین</button>
-
-            <div id="exercise-container"></div>
-        </section>
-    </main>
-
-    <footer>
-        <p>تمامی حقوق محفوظ است &copy; 2023</p>
-    </footer>
+    <h1>آموزش الفبا و دروس</h1>
+    <div>
+        <button onclick="selectLanguage('persian')">فارسی</button>
+        <button onclick="selectLanguage('math')">ریاضی</button>
+        <button onclick="selectLanguage('writing')">نگارش</button>
+    </div>
+    <div id="content"></div>
+    <script src="script.js"></script>
 </body>
 </html>
