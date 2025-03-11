@@ -5,22 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>آموزش الفبا و دروس</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
-        <h1>آموزش الفبا و دروس</h1>
-        <nav>
-            <button onclick="selectLanguage('persian')">فارسی</button>
-            <button onclick="selectLanguage('math')">ریاضی</button>
-            <button onclick="selectLanguage('writing')">نگارش</button>
-        </nav>
+        <div class="container">
+            <h1>آموزش الفبا و دروس</h1>
+            <nav>
+                <button class="nav-button" onclick="selectLanguage('persian')">فارسی</button>
+                <button class="nav-button" onclick="selectLanguage('math')">ریاضی</button>
+                <button class="nav-button" onclick="selectLanguage('writing')">نگارش</button>
+            </nav>
+        </div>
     </header>
     <main>
-        <div id="content"></div>
-        <div id="result"></div>
+        <div id="content" class="container"></div>
+        <div id="result" class="result"></div>
     </main>
     <footer>
-        <p>© 2023 آموزش الفبا و دروس</p>
+        <p>© 2023 آموزش الفبا و دروس. کلیه حقوق محفوظ است.</p>
     </footer>
     <script src="script.js"></script>
 </body>
