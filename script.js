@@ -1,69 +1,61 @@
-const subjects = [
-    { id: 1, name: 'زبان فارسی' },
-    { id: 2, name: 'نگارش' },
-    { id: 3, name: 'ریاضی' },
-];
+const persianAlphabet = ['الف', 'ب', 'پ', 'ت', 'ث', 'ج', 'چ', 'ح', 'خ', 'د', 'ذ', 'ر', 'ز', 'ژ', 'س', 'ش', 'ص', 'ض', 'ط', 'ظ', 'ع', 'غ', 'ف', 'ق', 'ک', 'گ', 'ل', 'م', 'ن', 'و', 'ه', 'ی'];
 
-const lessons = [
-    { id: 1, subject_id: 1, title: 'درس 1: آشنایی با کلمات' },
-    { id: 2, subject_id: 1, title: 'درس 2: جملات ساده' },
-    { id: 3, subject_id: 2, title: 'درس 1: نوشتن جملات ساده' },
-    { id: 4, subject_id: 3, title: 'درس 1: جمع و تفریق' },
-    { id: 5, subject_id: 3, title: 'درس 2: اندازه‌گیری' },
-];
+const mathTopics = ['جمع', 'تفریق', 'ضرب', 'تقسیم'];
+const writingTopics = ['نوشتن حروف', 'نوشتن کلمات', 'نوشتن جملات'];
 
-const exercises = [
-    { id: 1, lesson_id: 1, question: 'فعل جمله “بابا می‌خورد” چیست؟', answer: 'می‌خورد', type: 'تشخیص' },
-    { id: 2, lesson_id: 3, question: 'یک جمله با کلمه “کتاب” بنویسید.', answer: 'کتاب روی میز است.', type: 'نوشتن' },
-    { id: 3, lesson_id: 4, question: '5 + 3 چیست؟', answer: '8', type: 'محاسبه' },
-];
+function selectLanguage(language) {
+    let content = document.getElementById('content');
+    content.innerHTML = ''; // Clear previous content
 
-document.querySelectorAll('.subject-button').forEach(button => {
-    button.addEventListener('click', function() {
-        const subjectId = parseInt(this.getAttribute('data-id'));
-        const lessonSelect = document.getElementById('lesson-select');
-        lessonSelect.innerHTML = '<option value="">درس را انتخاب کنید</option>'; // Clear previous options
-        lessons.forEach(lesson => {
-            if (lesson.subject_id === subjectId) {
-                lessonSelect.innerHTML += `<option value="${lesson.id}">${lesson.title}</option>`;
-            }
+    if (language === 'persian') {
+        persianAlphabet.forEach(letter => {
+            const button = document.createElement('button');
+            button.innerText = letter;
+            button.onclick = () => showExercise(letter);
+            content.appendChild(button);
         });
-
-        // نمایش عنوان درس و فیلدهای مربوطه
-        document.getElementById('lesson-title').style.display = 'block';
-        lessonSelect.style.display = 'block';
-        document.getElementById('load-exercise').style.display = 'block';
-    });
-});
-
-// اضافه کردن Event listener برای بارگذاری تمرینات
-document.getElementById('load-exercise').addEventListener('click', function() {
-    const lessonId = parseInt(document.getElementById('lesson-select').value);
-    const exerciseContainer = document.getElementById('exercise-container');
-    exerciseContainer.innerHTML = ''; // Clear previous exercise
-
-    const selectedExercises = exercises.filter(ex => ex.lesson_id === lessonId);
-    if (selectedExercises.length > 0) {
-        const exercise = selectedExercises[Math.floor(Math.random() * selectedExercises.length)];
-        exerciseContainer.innerHTML = `<h3>${exercise.question}</h3>`;
-        
-        if (exercise.type === 'نوشتن') {
-            exerciseContainer.innerHTML += `<input type="text" id="answer-input" placeholder="پاسخ را وارد کنید">`;
-        }
-
-        exerciseContainer.innerHTML += `<button id="submit-answer">ارسال پاسخ</button>`;
-        
-        // Add event listener for submit button inside this if block
-        document.getElementById('submit-answer').addEventListener('click', function() {
-            const userAnswer = document.getElementById('answer-input') ? document.getElementById('answer-input').value.trim() : '';
-            if (userAnswer.toLowerCase() === exercise.answer.toLowerCase()) {
-                alert('پاسخ شما درست است!');
-                document.getElementById('load-exercise').click(); // بارگذاری تمرین جدید
-            } else {
-                alert(`پاسخ شما غلط است! پاسخ صحیح: ${exercise.answer}`);
-            }
+    } else if (language === 'math') {
+        mathTopics.forEach(topic => {
+            const button = document.createElement('button');
+            button.innerText = topic;
+            button.onclick = () => showMathExercise(topic);
+            content.appendChild(button);
         });
-    } else {
-        exerciseContainer.innerHTML = '<p>هیچ تمرینی برای این درس موجود نیست.</p>';
+    } else if (language === 'writing') {
+        writingTopics.forEach(topic => {
+            const button = document.createElement('button');
+            button.innerText = topic;
+            button.onclick = () => showWritingExercise(topic);
+            content.appendChild(button);
+        });
     }
-});
+}
+
+function showExercise(letter) {
+    const exercise = `تمرین برای حرف ${letter}: `;
+    const options = ['گزینه ۱', 'گزینه ۲'];
+    displayQuestion(exercise, options);
+}
+
+function showMathExercise(topic) {
+    const exercise = `تمرین برای ${topic}: `;
+    const options = ['گزینه ۱', 'گزینه ۲'];
+    displayQuestion(exercise, options);
+}
+
+function showWritingExercise(topic) {
+    const exercise = `تمرین برای ${topic}: `;
+    const options = ['گزینه ۱', 'گزینه ۲'];
+    displayQuestion(exercise, options);
+}
+
+function displayQuestion(exercise, options) {
+    let content = document.getElementById('content');
+    content.innerHTML = `<h2>${exercise}</h2>`;
+    
+    options.forEach(option => {
+        const button = document.createElement('button');
+        button.innerText = option;
+        content.appendChild(button);
+    });
+}
