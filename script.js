@@ -15,6 +15,7 @@ function selectLanguage(language) {
     if (language === 'persian') {
         persianAlphabet.forEach(letter => {
             const button = document.createElement('button');
+            button.className = 'nav-button';
             button.innerText = letter;
             button.onclick = () => generatePersianExercise(letter);
             content.appendChild(button);
@@ -22,6 +23,7 @@ function selectLanguage(language) {
     } else if (language === 'math') {
         mathTopics.forEach(topic => {
             const button = document.createElement('button');
+            button.className = 'nav-button';
             button.innerText = topic;
             button.onclick = () => generateMathExercise(topic);
             content.appendChild(button);
@@ -29,6 +31,7 @@ function selectLanguage(language) {
     } else if (language === 'writing') {
         writingTopics.forEach(topic => {
             const button = document.createElement('button');
+            button.className = 'nav-button';
             button.innerText = topic;
             button.onclick = () => generateWritingExercise(topic);
             content.appendChild(button);
@@ -125,4 +128,3 @@ function handleAnswer(userAnswer) {
         resultDiv.innerHTML = `پاسخ نادرست است، جواب صحیح: ${currentExercise.answer}`;
     }
 }
-
