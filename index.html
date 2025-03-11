@@ -7,13 +7,21 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>آموزش الفبا و دروس</h1>
-    <div>
-        <button onclick="selectLanguage('persian')">فارسی</button>
-        <button onclick="selectLanguage('math')">ریاضی</button>
-        <button onclick="selectLanguage('writing')">نگارش</button>
-    </div>
-    <div id="content"></div>
+    <header>
+        <h1>آموزش الفبا و دروس</h1>
+        <nav>
+            <button onclick="selectLanguage('persian')">فارسی</button>
+            <button onclick="selectLanguage('math')">ریاضی</button>
+            <button onclick="selectLanguage('writing')">نگارش</button>
+        </nav>
+    </header>
+    <main>
+        <div id="content"></div>
+        <div id="result"></div>
+    </main>
+    <footer>
+        <p>© 2023 آموزش الفبا و دروس</p>
+    </footer>
     <script src="script.js"></script>
 </body>
 </html>
