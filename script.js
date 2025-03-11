@@ -5,7 +5,7 @@ const writingTopics = ['نوشتن حروف', 'نوشتن کلمات', 'نوشت
 
 function selectLanguage(language) {
     let content = document.getElementById('content');
-    content.innerHTML = ''; // Clear previous content
+    content.innerHTML = ''; // پاک کردن محتوای قبلی
 
     if (language === 'persian') {
         persianAlphabet.forEach(letter => {
@@ -33,19 +33,19 @@ function selectLanguage(language) {
 
 function showExercise(letter) {
     const exercise = `تمرین برای حرف ${letter}: `;
-    const options = ['گزینه ۱', 'گزینه ۲'];
+    const options = ['گزینه ۱: درست', 'گزینه ۲: نادرست'];
     displayQuestion(exercise, options);
 }
 
 function showMathExercise(topic) {
     const exercise = `تمرین برای ${topic}: `;
-    const options = ['گزینه ۱', 'گزینه ۲'];
+    const options = ['گزینه ۱: درست', 'گزینه ۲: نادرست'];
     displayQuestion(exercise, options);
 }
 
 function showWritingExercise(topic) {
     const exercise = `تمرین برای ${topic}: `;
-    const options = ['گزینه ۱', 'گزینه ۲'];
+    const options = ['گزینه ۱: درست', 'گزینه ۲: نادرست'];
     displayQuestion(exercise, options);
 }
 
